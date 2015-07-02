@@ -1,4 +1,3 @@
-
 $(function() {
 
   //adding the id of new_to_do to a variable of new item
@@ -10,45 +9,15 @@ $(function() {
   //element to hold list of todos
   var $toDoUl = $("#todo-list");
 
-  //constructor function 
-
-  function ToDo (item_title, description, date) {
-  this.item_title = item_title;
-  this.description = description;
-  this.date = date;
-  };
-
-  ToDo.all = []
-
-  var task1 = new ToDo ("clean", "room");
-
-  ToDo.prototype.save = function(){
-  ToDo.all.push(this);
-  console.log(this);
-  };
-
-  task1.save();
- 
-  ToDo.prototype.render = function() {
-  _.each(ToDo.all, function (task, index) {
-    var $task = $(toDoTemplate(task));
-    $task.attr('data-index', index);
-    $toDoUl.append($task)
-    console.log("render works")
-  });
-  }
-
-  task1.render();
-  
   //model of seed data 
-  // var tasks = [
-  // {item_title: "Sprinkles", description: "cat", date: "2015-07-01"},
-  // {item_title: "Bagel", description: "dog", date: "2015-07-02"},
-  // {item_title: "Fluffy", description: "dinosaur", date: "2015-07-03"}
-  // ];
+  var tasks = [
+  {item_title: "Sprinkles", description: "cat", date: "2015-07-01"},
+  {item_title: "Bagel", description: "dog", date: "2015-07-02"},
+  {item_title: "Fluffy", description: "dinosaur", date: "2015-07-03"}
+  ];
 
   //append existing seed data to html
-  _.each(ToDo.all, function (task, index) {
+  _.each(tasks, function (task, index) {
     var $task = $(toDoTemplate(task));
     $task.attr('data-index', index);
     $toDoUl.append($task)
@@ -62,6 +31,11 @@ $(function() {
       console.log($('#item_name').val() ); //to do list info
       console.log($('#description').val() );
       console.log($('#date').val() );
+      
+      //creates a new variable for the list
+      // var newTasks = [];
+      // //this adds the submitted item to the array
+      // newTasks.push({item_title: $('#item_name').val(), description: $('#description').val(), date: $('#date').val() });
       
       // create new todo object from form data
       var toDoName = $('#item_name').val();
@@ -96,4 +70,3 @@ $(function() {
     // });
 
 });
-
